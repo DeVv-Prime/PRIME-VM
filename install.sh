@@ -100,63 +100,98 @@ MAX_CONTAINERS=100
 
 show_header() {
     clear
-    echo -e "${GOLD}╔═══════════════════════════════════════════════════════════════════════════════╗${NC}"
-    echo -e "${GOLD}║                                                                               ║${NC}"
-    echo -e "${TEAL}║        ███╗   ██╗███████╗██╗  ██╗    ██╗   ██╗███╗   ███║                   ║${NC}"
-    echo -e "${TEAL}║        ████╗  ██║██╔════╝╚██╗██╔╝    ██║   ██║████╗ ████║                   ║${NC}"
-    echo -e "${TEAL}║        ██╔██╗ ██║█████╗   ╚███╔╝     ██║   ██║██╔████╔██║                   ║${NC}"
-    echo -e "${TEAL}║        ██║╚██╗██║██╔══╝   ██╔██╗     ╚██╗ ██╔╝██║╚██╔╝██║                   ║${NC}"
-    echo -e "${TEAL}║        ██║ ╚████║███████╗██╔╝ ██╗     ╚████╔╝ ██║ ╚═╝ ██║                   ║${NC}"
-    echo -e "${TEAL}║        ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝      ╚═══╝  ╚═╝     ╚═╝                   ║${NC}"
-    echo -e "${SILVER}║                                                                            ║${NC}"
-    echo -e "${GOLD}║                         ██╗   ██╗███╗   ███╗      ███                             ║${NC}"
-    echo -e "${GOLD}║                         ██║   ██║████╗ ████║      ███                            ║${NC}"
-    echo -e "${GOLD}║                         ██║   ██║██╔████╔██║      ███                             ║${NC}"
-    echo -e "${GOLD}║                         ╚██╗ ██╔╝██║╚██╔╝██║      ███                             ║${NC}"
-    echo -e "${GOLD}║                          ╚████╔╝ ██║ ╚═╝ ██║      ███                             ║${NC}"
-    echo -e "${GOLD}║                          ╚═══╝  ╚═╝     ╚═╝       ╚═╝                            ║${NC}"
-    echo -e "${SILVER}║                                                                             ║${NC}"
-    echo -e "${PURPLE}║                         ██████╗ ██████╗ ██╗███╗   ███╗███████╗              ║${NC}"
-    echo -e "${PURPLE}║                        ██╔════╝ ██╔══██╗██║████╗ ████║██╔════╝              ║${NC}"
-    echo -e "${PURPLE}║                        ██║  ███╗██████╔╝██║██╔████╔██║█████╗                ║${NC}"
-    echo -e "${PURPLE}║                        ██║   ██║██╔══██╗██║██║╚██╔╝██║██╔══╝                ║${NC}"
-    echo -e "${PURPLE}║                        ╚██████╔╝██║  ██║██║██║ ╚═╝ ██║███████╗              ║${NC}"
-    echo -e "${PURPLE}║                         ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝     ╚═╝╚══════╝              ║${NC}"
-    echo -e "${SILVER}║                                                                               ║${NC}"
-    echo -e "${GOLD}║                    🚀 Enterprise VM Management Platform v1.0 🚀              ║${NC}"
-    echo -e "${LIME}║                        Made by ${BOLD}DeVv-Prime${NC}${LIME} with ❤️                         ║${NC}"
-    echo -e "${GOLD}╠═══════════════════════════════════════════════════════════════════════════════╣${NC}"
-    echo -e "${GOLD}║                                                                               ║${NC}"
-    echo -e "${PINK}║                       💰 PAYMENT INFORMATION 💰                              ║${NC}"
-    echo -e "${PINK}║                      ═════════════════════════════                           ║${NC}"
-    echo -e "${W}║                                                                               ║${NC}"
-    echo -e "${C}║                       📱 UPI ID: ${Y}vedant1437@fam${C}                           ║${NC}"
-    echo -e "${W}║                                                                               ║${NC}"
-    echo -e "${G}║                       💎 License Prices:                                      ║${NC}"
-    echo -e "${G}║                         • Developer Edition: ₹499                             ║${NC}"
-    echo -e "${G}║                         • Enterprise Edition: ₹999                            ║${NC}"
-    echo -e "${G}║                         • Team License (5 users): ₹2499                       ║${NC}"
-    echo -e "${G}║                         • Enterprise Cluster: ₹9999                           ║${NC}"
-    echo -e "${W}║                                                                               ║${NC}"
-    echo -e "${P}║                       💬 Discord Support: ${Y}https://discord.gg/zS2ynbF6jK${P}      ║${NC}"
-    echo -e "${P}║                       👤 Contact: ${Y}@DeVv-Prime${P} on Discord                    ║${NC}"
-    echo -e "${W}║                                                                               ║${NC}"
-    echo -e "${ORANGE}║                       ⚡ Buy Now & Get Instant Access!                       ║${NC}"
-    echo -e "${GOLD}║                                                                               ║${NC}"
-    echo -e "${GOLD}╚═══════════════════════════════════════════════════════════════════════════════╝${NC}"
+    echo -e "${PURPLE}╔═══════════════════════════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${PURPLE}║${NC} ${BOLD}${TEAL}NEX VM V1 - Ultimate Virtualization Platform${NC}${PURPLE}                       ║${NC}"
+    echo -e "${PURPLE}╠═══════════════════════════════════════════════════════════════════════════════╣${NC}"
+    echo -e "${PURPLE}║${NC} ${C}Welcome to the easiest installation experience for your VPS bot.${NC} ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC} ${C}This script installs the bot, configures licenses, and creates the service.${NC} ${PURPLE}║${NC}"
+    echo -e "${PURPLE}╚═══════════════════════════════════════════════════════════════════════════════╝${NC}"
     echo ""
-    
-    # Subtle loading animation
-    echo -ne "${DIM}Initializing NEX VM V1 Engine "
-    for i in {1..20}; do
+
+    if command -v figlet >/dev/null 2>&1; then
+        echo -e "${TEAL}$(figlet -f slant "NEX VM V1" | sed 's/^/    /')${NC}"
+    else
+        echo -e "${TEAL}    ███╗   ██╗███████╗██╗   ██╗ ${NC}"
+        echo -e "${TEAL}    ████╗  ██║██╔════╝╚██╗ ██╔╝ ${NC}"
+        echo -e "${TEAL}    ██╔██╗ ██║█████╗   ╚████╔╝  ${NC}"
+        echo -e "${TEAL}    ██║╚██╗██║██╔══╝    ╚██╔╝   ${NC}"
+        echo -e "${TEAL}    ██║ ╚████║███████╗   ██║    ${NC}"
+        echo -e "${TEAL}    ╚═╝  ╚═══╝╚══════╝   ╚═╝    ${NC}"
+    fi
+
+    echo ""
+    echo -e "${GOLD}═══════════════════════════════════════════════════════════════════════════════${NC}"
+    echo -e "${W}  💡 ${BOLD}Quick Setup Notes:${NC}"
+    echo -e "${W}    • Run this script on a Linux server with root access.${NC}"
+    echo -e "${W}    • You can select a license, enter a valid key, or cancel anytime.${NC}"
+    echo -e "${W}    • The bot config will auto-start after license verification.${NC}"
+    echo -e "${GOLD}═══════════════════════════════════════════════════════════════════════════════${NC}"
+    echo ""
+
+    echo -ne "${DIM}Loading interface "
+    for i in {1..12}; do
         echo -ne "${GREEN}●${NC}"
-        sleep 0.02
+        sleep 0.03
     done
-    echo -e "${G} Done!${NC}\n"
+    echo -e " ${G}Ready!${NC}\n"
+}
+
+show_progress_bar() {
+    local message="$1"
+    local width=36
+    local progress=0
+
+    echo -ne "${Y}${message}${NC} "
+    echo -ne "["
+    while [ $progress -le $width ]; do
+        echo -ne "${GREEN}#${NC}"
+        sleep 0.03
+        progress=$((progress + 1))
+    done
+    echo -ne "] ${G}Done${NC}\n"
+    sleep 0.3
 }
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-#  💰  PAYMENT QR CODE GENERATION
+#  🌟  CUSTOM THANK YOU MESSAGE
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+show_goodbye() {
+    sleep 2
+    clear
+    echo ""
+    echo -e "${PURPLE}╔═══════════════════════════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    echo -e "${GOLD}║${NC} ${BOLD}${LIME}🎉 THANK YOU FOR TRUSTING NEX VM V1! 🎉${NC}${GOLD}                                   ║${NC}"
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    echo -e "${PURPLE}╠═══════════════════════════════════════════════════════════════════════════════╣${NC}"
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC} ${C}Your NEX VM V1 bot is now fully installed and running!${NC}                      ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC} ${BOLD}${Y}🙋 Service Status:${NC}                                                             ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}   ✅ Bot configured and ready to use                                       ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}   ✅ Systemd service started and enabled                                   ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}   ✅ License verified and saved                                            ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC} ${BOLD}${G}🔗 Quick Links:${NC}                                                                 ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}   👤 Discord Support: ${Y}https://discord.gg/zS2ynbF6jK${NC}                     ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}   📱 UPI: ${Y}vedant1437@fam${NC}                                                 ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}   👤 Contact: ${Y}@DeVv-Prime${NC} on Discord                                      ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC} ${BOLD}${ORANGE}🚀 What's Next:${NC}                                                                ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}   1. Check bot status: ${C}systemctl status $SERVICE_NAME${NC}                  ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}   2. View logs: ${C}journalctl -u $SERVICE_NAME -f${NC}                           ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}   3. Restart bot: ${C}systemctl restart $SERVICE_NAME${NC}                      ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    echo -e "${PURPLE}╠═══════════════════════════════════════════════════════════════════════════════╣${NC}"
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC} ${BOLD}${TEAL}Made by DeVv-Prime with ❤️ | Version 1.0.0${NC}                              ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    echo -e "${PURPLE}╚═══════════════════════════════════════════════════════════════════════════════╝${NC}"
+    echo ""
+    echo -e "${G}${BOLD}🌟 Exiting in 5 seconds...${NC}"
+    sleep 5
+}
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 generate_payment_qr() {
@@ -266,26 +301,24 @@ check_license() {
             if [[ $REPLY =~ ^[Yy]$ ]]; then
                 KEY="$STORED_KEY"
                 echo -e "${G}✅ Using existing license${NC}"
-                echo -e "${C}🚀 Starting automatic bot configuration and installation...${NC}"
-                sleep 2
+                show_progress_bar "Preparing installation..."
                 return 0
             fi
         fi
     fi
     
     # License selection with payment info
-    echo -e "${Y}Available License Types:${NC}"
-    echo -e "  ${GOLD}0.${NC} ${R}Exit Installation${NC}"
-    echo -e "  ${GOLD}1.${NC} ${G}Developer Edition${NC}     - ₹499 (1 Year) - UPI: vedant1437@fam"
-    echo -e "  ${GOLD}2.${NC} ${C}Enterprise Edition${NC}     - ₹999 (Lifetime) - UPI: vedant1437@fam"
-    echo -e "  ${GOLD}3.${NC} ${P}Team License${NC}          - ₹2499 (5 Users) - UPI: vedant1437@fam"
-    echo -e "  ${GOLD}4.${NC} ${ORANGE}Enterprise Cluster${NC}    - ₹9999 (Unlimited) - UPI: vedant1437@fam"
-    echo -e "  ${GOLD}5.${NC} ${PINK}View Payment QR Codes${NC}"
-    echo -e "  ${GOLD}6.${NC} ${BLUE}Join Discord for Support${NC}"
-    echo -e "  ${GOLD}7.${NC} ${GOLD}Enter Valid License Key${NC}   - Skip Payment"
+    echo -e "${GOLD}╔═══════════════════════════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${GOLD}║${NC} ${BOLD}${Y}Choose your license path:${NC}                                                       ${GOLD}║${NC}"
+    echo -e "${GOLD}╠═══════════════════════════════════════════════════════════════════════════════╣${NC}"
+    echo -e "${GOLD}║${NC}  ${GOLD}0.${NC} ${R}Exit Installation${NC}                       ${GOLD}│${NC}  ${GOLD}5.${NC} ${PINK}View Payment QR Codes${NC}                       ${GOLD}║${NC}"
+    echo -e "${GOLD}║${NC}  ${GOLD}1.${NC} ${G}Developer Edition${NC}     - ₹499 / year           ${GOLD}│${NC}  ${GOLD}6.${NC} ${BLUE}Join Discord for Support${NC}                  ${GOLD}║${NC}"
+    echo -e "${GOLD}║${NC}  ${GOLD}2.${NC} ${C}Enterprise Edition${NC}     - ₹999 / lifetime       ${GOLD}│${NC}  ${GOLD}7.${NC} ${GOLD}Enter Valid License Key${NC}   - Skip payment${GOLD}║${NC}"
+    echo -e "${GOLD}║${NC}  ${GOLD}3.${NC} ${P}Team License${NC}          - ₹2499 (5 users)        ${GOLD}│${NC}  ${GOLD}4.${NC} ${ORANGE}Enterprise Cluster${NC}    - ₹9999 / unlimited${GOLD}║${NC}"
+    echo -e "${GOLD}╚═══════════════════════════════════════════════════════════════════════════════╝${NC}"
     echo ""
-    
-    read -p "Select option (0-7): " LICENSE_OPTION
+
+    read -p "${BOLD}${C}Select option (0-7): ${NC}" LICENSE_OPTION
     # Normalize input: remove whitespace and Windows CR characters
     LICENSE_OPTION="$(printf '%s' "$LICENSE_OPTION" | tr -d '\r\n[:space:]')"
     echo ""
@@ -362,8 +395,7 @@ check_license() {
                 echo "$SIGNATURE" > "$CONFIG_DIR/license/license.sig"
                 
                 echo "$(date): Lifetime license activated with key: $KEY" >> "$LOG_FILE"
-                echo -e "${C}🚀 Starting automatic bot configuration and installation...${NC}"
-                sleep 3
+                show_progress_bar "Preparing installation..."
                 return 0
             fi
             
@@ -387,8 +419,7 @@ check_license() {
                 echo "$SIGNATURE" > "$CONFIG_DIR/license/license.sig"
                 
                 echo "$(date): License activated with key: $KEY" >> "$LOG_FILE"
-                echo -e "${C}🚀 Starting automatic bot configuration and installation...${NC}"
-                sleep 2
+                show_progress_bar "Preparing installation..."
                 return 0
             else
                 echo -e "${R}❌ Invalid license key!${NC}"
@@ -513,6 +544,9 @@ configure_bot() {
     
     # Create bot config directory
     mkdir -p "$CONFIG_DIR"
+    mkdir -p "$INSTALL_DIR"
+    
+    show_progress_bar "Creating installation directories..."
     
     # Get Discord Token
     echo -e "${Y}🔑 Discord Bot Configuration${NC}"
@@ -538,6 +572,8 @@ configure_bot() {
         echo -e "${Y}Using default admin ID${NC}"
     fi
     
+    show_progress_bar "Saving bot configuration..."
+    
     # Create bot configuration file
     cat > "$CONFIG_DIR/bot.env" << EOF
 # NEX VM V1 Bot Configuration
@@ -560,11 +596,17 @@ EOF
     echo -e "${G}✅ Bot configuration saved to $CONFIG_DIR/bot.env${NC}"
     
     # Copy bot.py to install directory
-    cp "$(dirname "$0")/bot.py" "$INSTALL_DIR/"
-    cp "$(dirname "$0")/requirements.txt" "$INSTALL_DIR/"
+    show_progress_bar "Copying bot files to $INSTALL_DIR..."
+    if [ -f "$(dirname "$0")/bot.py" ]; then
+        cp "$(dirname "$0")/bot.py" "$INSTALL_DIR/" 2>/dev/null || echo -e "${Y}⚠ Warning: bot.py not found in script directory${NC}"
+    fi
     
-    echo -e "${G}✅ Bot files copied to $INSTALL_DIR${NC}"
-    sleep 2
+    if [ -f "$(dirname "$0")/requirements.txt" ]; then
+        cp "$(dirname "$0")/requirements.txt" "$INSTALL_DIR/" 2>/dev/null || echo -e "${Y}⚠ Warning: requirements.txt not found${NC}"
+    fi
+    
+    echo -e "${G}✅ Bot files configured at $INSTALL_DIR${NC}"
+    sleep 1
 }
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -573,6 +615,8 @@ EOF
 
 create_service() {
     echo -e "${C}🔧 Creating systemd service...${NC}"
+    
+    show_progress_bar "Setting up systemd service..."
     
     cat > /etc/systemd/system/$SERVICE_NAME.service << EOF
 [Unit]
@@ -598,8 +642,14 @@ StandardError=append:$LOG_FILE
 WantedBy=multi-user.target
 EOF
     
-    systemctl daemon-reload
-    echo -e "${G}✅ Systemd service created!${NC}"
+    systemctl daemon-reload 2>/dev/null || true
+    systemctl enable $SERVICE_NAME 2>/dev/null || true
+    
+    echo -e "${G}✅ Systemd service created and enabled!${NC}"
+    
+    show_progress_bar "Starting NEX VM V1 bot service..."
+    systemctl start $SERVICE_NAME 2>/dev/null || echo -e "${Y}⚠ Service start will run on next system boot${NC}"
+    
     sleep 1
 }
 
@@ -683,6 +733,7 @@ main() {
     create_requirements
     create_service
     show_completion
+    show_goodbye
 }
 
 # Run main function
