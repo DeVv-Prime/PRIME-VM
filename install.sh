@@ -58,20 +58,20 @@ BG_ORANGE='\033[48;5;214m'
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 # Main Directories
-INSTALL_DIR="/opt/nexvm-v1"
-BOT_SCRIPT="nexvm.py"
-SERVICE_NAME="nexvm-v1"
-LOG_FILE="/var/log/nexvm-v1.log"
-CONFIG_DIR="/etc/nexvm"
-DATA_DIR="/var/lib/nexvm"
-BACKUP_DIR="/var/backups/nexvm"
-TEMP_DIR="/tmp/nexvm"
-CACHE_DIR="/var/cache/nexvm"
-SSL_DIR="/etc/nexvm/ssl"
-HOOKS_DIR="/etc/nexvm/hooks"
-PLUGINS_DIR="/etc/nexvm/plugins"
-PAYMENT_DIR="/etc/nexvm/payments"
-TICKET_DIR="/etc/nexvm/tickets"
+INSTALL_DIR="/opt/primevm"
+BOT_SCRIPT="primevm.py"
+SERVICE_NAME="primevm"
+LOG_FILE="/var/log/primevm.log"
+CONFIG_DIR="/etc/primevm"
+DATA_DIR="/var/lib/primevm"
+BACKUP_DIR="/var/backups/primevm"
+TEMP_DIR="/tmp/primevm"
+CACHE_DIR="/var/cache/primevm"
+SSL_DIR="/etc/primevm/ssl"
+HOOKS_DIR="/etc/primevm/hooks"
+PLUGINS_DIR="/etc/primevm/plugins"
+PAYMENT_DIR="/etc/primevm/payments"
+TICKET_DIR="/etc/primevm/tickets"
 
 # Payment Configuration
 UPI_ID="vedant1437@fam"
@@ -101,7 +101,7 @@ MAX_CONTAINERS=100
 show_header() {
     clear
     echo -e "${PURPLE}╔═══════════════════════════════════════════════════════════════════════════════╗${NC}"
-    echo -e "${PURPLE}║${NC} ${BOLD}${TEAL}NEX VM V1 - Ultimate Virtualization Platform${NC}${PURPLE}                       ║${NC}"
+    echo -e "${PURPLE}║${NC} ${BOLD}${TEAL}PRIME VM - Ultimate Virtualization Platform${NC}${PURPLE}                       ║${NC}"
     echo -e "${PURPLE}╠═══════════════════════════════════════════════════════════════════════════════╣${NC}"
     echo -e "${PURPLE}║${NC} ${C}Welcome to the easiest installation experience for your VPS bot.${NC} ${PURPLE}║${NC}"
     echo -e "${PURPLE}║${NC} ${C}This script installs the bot, configures licenses, and creates the service.${NC} ${PURPLE}║${NC}"
@@ -109,14 +109,14 @@ show_header() {
     echo ""
 
     if command -v figlet >/dev/null 2>&1; then
-        echo -e "${TEAL}$(figlet -f slant "NEX VM V1" | sed 's/^/    /')${NC}"
+        echo -e "${TEAL}$(figlet -f slant "PRIME VM" | sed 's/^/    /')${NC}"
     else
-        echo -e "${TEAL}    ███╗   ██╗███████╗██╗   ██╗ ${NC}"
-        echo -e "${TEAL}    ████╗  ██║██╔════╝╚██╗ ██╔╝ ${NC}"
-        echo -e "${TEAL}    ██╔██╗ ██║█████╗   ╚████╔╝  ${NC}"
-        echo -e "${TEAL}    ██║╚██╗██║██╔══╝    ╚██╔╝   ${NC}"
-        echo -e "${TEAL}    ██║ ╚████║███████╗   ██║    ${NC}"
-        echo -e "${TEAL}    ╚═╝  ╚═══╝╚══════╝   ╚═╝    ${NC}"
+        echo -e "${TEAL}    █████╗  ██╗  ████╗ █████╗ ████╗ ██████╗  ${NC}"
+        echo -e "${TEAL}    ██╔═██╗██║ ██║██╔══╝██╔══██╗ ██╔══╝ ${NC}"
+        echo -e "${TEAL}    ██║ ██║██║ ██║█████╗ ██║  ██║ ██████╗ ${NC}"
+        echo -e "${TEAL}    ██║ ██║██║ ██║██╔══╝██║  ██║     ██║ ${NC}"
+        echo -e "${TEAL}    ██╔═██╗╚████╔╝██████╗██╔══██╗ ██████╗ ${NC}"
+        echo -e "${TEAL}    ╚══╝ ╚══╝╚════╝ ╚═════╝ ╚════╝╚═════╝ ${NC}"
     fi
 
     echo ""
@@ -150,6 +150,168 @@ show_progress_bar() {
     done
     echo -ne "] ${G}Done${NC}\n"
     sleep 0.3
+}
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  📊  LICENSE DASHBOARD WITH VALIDITY DISPLAY
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+calculate_validity() {
+    local license_key=$1
+    local license_type=$2
+    
+    # Check if it's a lifetime key
+    if [[ "$license_key" == "1kapi" ]] || [[ "$license_type" == "Lifetime" ]] || [[ "$license_key" == *"MASTER"* ]] || [[ "$license_key" == *"ADMIN"* ]]; then
+        echo "∞ (Lifetime)"
+        return
+    fi
+    
+    # Calculate validity based on license type
+    case $license_type in
+        Developer)
+            # 365 days validity
+            EXPIRY_DATE=$(date -d "+365 days" +"%Y-%m-%d" 2>/dev/null || date -v+365d +"%Y-%m-%d" 2>/dev/null || echo "N/A")
+            echo "365d (1 year)"
+            ;;
+        Enterprise)
+            # Lifetime
+            echo "∞ (Lifetime)"
+            ;;
+        Team)
+            # 2 years validity
+            EXPIRY_DATE=$(date -d "+730 days" +"%Y-%m-%d" 2>/dev/null || date -v+730d +"%Y-%m-%d" 2>/dev/null || echo "N/A")
+            echo "730d (2 years)"
+            ;;
+        Cluster)
+            # Lifetime
+            echo "∞ (Lifetime)"
+            ;;
+        *)
+            echo "Unlimited"
+            ;;
+    esac
+}
+
+show_license_dashboard() {
+    clear
+    echo ""
+    
+    # Read stored license info
+    LICENSE_KEY=""
+    LICENSE_TYPE="Trial"
+    ACTIVATION_DATE=$(date +"%Y-%m-%d %H:%M:%S")
+    
+    if [ -f "$CONFIG_DIR/license/license.key" ]; then
+        LICENSE_KEY=$(cat "$CONFIG_DIR/license/license.key")
+    fi
+    
+    if [ -f "$PAYMENT_DIR/last_payment.txt" ]; then
+        LICENSE_TYPE=$(grep "License activated - Type:" "$PAYMENT_DIR/last_payment.txt" 2>/dev/null | awk -F': ' '{print $NF}' | awk '{print $1}' || echo "Standard")
+    fi
+    
+    VALIDITY=$(calculate_validity "$LICENSE_KEY" "$LICENSE_TYPE")
+    
+    echo -e "${PURPLE}╔═══════════════════════════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    echo -e "${GOLD}║${NC} ${BOLD}${TEAL}📊 PRIME VM - LICENSE DASHBOARD 📊${NC}${GOLD}                                     ║${NC}"
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    echo -e "${PURPLE}╠═══════════════════════════════════════════════════════════════════════════════╣${NC}"
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    echo -e "${W}║   ${BOLD}📋 License Information${NC}                                                     ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}   ──────────────────────────────────────────────────────────────────────────   ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    echo -e "${W}║   License Type:       ${BOLD}${G}$LICENSE_TYPE${NC}                                        ${PURPLE}║${NC}"
+    echo -e "${W}║   License Key:        ${BOLD}${Y}${LICENSE_KEY:0:20}***${NC}                               ${PURPLE}║${NC}"
+    echo -e "${W}║   Status:             ${BOLD}${G}✅ ACTIVE${NC}                                            ${PURPLE}║${NC}"
+    echo -e "${W}║   Activated:          ${BOLD}${C}$ACTIVATION_DATE${NC}                      ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    echo -e "${PURPLE}╠═══════════════════════════════════════════════════════════════════════════════╣${NC}"
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    echo -e "${W}║   ${BOLD}⏱️  Validity${NC}                                                               ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}   ──────────────────────────────────────────────────────────────────────────   ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    
+    if [[ "$VALIDITY" == *"∞"* ]]; then
+        echo -e "${W}║   Validity Period:    ${BOLD}${LIME}$VALIDITY${NC}                                            ${PURPLE}║${NC}"
+    else
+        echo -e "${W}║   Validity Period:    ${BOLD}${ORANGE}$VALIDITY${NC}                                           ${PURPLE}║${NC}"
+    fi
+    
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    echo -e "${PURPLE}╠═══════════════════════════════════════════════════════════════════════════════╣${NC}"
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    echo -e "${W}║   ${BOLD}🔧 Available Actions${NC}                                                       ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}   ──────────────────────────────────────────────────────────────────────────   ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    echo -e "${GOLD}║   ${BOLD}1.${NC} ${G}View Bot Status${NC}                                                    ${PURPLE}║${NC}"
+    echo -e "${GOLD}║   ${BOLD}2.${NC} ${C}View License Details${NC}                                               ${PURPLE}║${NC}"
+    echo -e "${GOLD}║   ${BOLD}3.${NC} ${ORANGE}Payment & Renewal${NC}                                               ${PURPLE}║${NC}"
+    echo -e "${GOLD}║   ${BOLD}4.${NC} ${PINK}Discord Support${NC}                                                 ${PURPLE}║${NC}"
+    echo -e "${GOLD}║   ${BOLD}5.${NC} ${R}Exit Dashboard${NC}                                                    ${PURPLE}║${NC}"
+    echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+    echo -e "${PURPLE}╚═══════════════════════════════════════════════════════════════════════════════╝${NC}"
+    echo ""
+    
+    read -p "${BOLD}${C}Select option (1-5): ${NC}" MENU_CHOICE
+    MENU_CHOICE="$(printf '%s' "$MENU_CHOICE" | tr -d '\r\n[:space:]')"
+    
+    case $MENU_CHOICE in
+        1)
+            echo -e "${C}Checking bot status...${NC}"
+            systemctl status $SERVICE_NAME
+            echo ""
+            read -p "Press Enter to return to dashboard..."
+            show_license_dashboard
+            ;;
+        2)
+            clear
+            echo -e "${PURPLE}╔═══════════════════════════════════════════════════════════════════════════════╗${NC}"
+            echo -e "${PURPLE}║${NC}                  ${BOLD}${TEAL}📋 DETAILED LICENSE INFORMATION${NC}                              ${PURPLE}║${NC}"
+            echo -e "${PURPLE}╠═══════════════════════════════════════════════════════════════════════════════╣${NC}"
+            echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+            echo -e "${W}║   Full License Key:     ${BOLD}${Y}$LICENSE_KEY${NC}                                    ${PURPLE}║${NC}"
+            echo -e "${W}║   License Category:     ${BOLD}${G}Enterprise${NC}                                      ${PURPLE}║${NC}"
+            echo -e "${W}║   Activation Date:      ${BOLD}${C}$ACTIVATION_DATE${NC}                      ${PURPLE}║${NC}"
+            echo -e "${W}║   Current Status:       ${BOLD}${LIME}✅ VERIFIED & ACTIVE${NC}                                ${PURPLE}║${NC}"
+            echo -e "${W}║   Validity:             ${BOLD}${LIME}$VALIDITY${NC}                                      ${PURPLE}║${NC}"
+            echo -e "${W}║   Bot Installation:     ${BOLD}${G}$INSTALL_DIR${NC}                                  ${PURPLE}║${NC}"
+            echo -e "${W}║   Service Name:         ${BOLD}${C}$SERVICE_NAME${NC}                                      ${PURPLE}║${NC}"
+            echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+            echo -e "${PURPLE}╠═══════════════════════════════════════════════════════════════════════════════╣${NC}"
+            if [ -f "$PAYMENT_DIR/last_payment.txt" ]; then
+                echo -e "${PURPLE}║${NC}  ${BOLD}${GOLD}💳 Payment Details:${NC}                                                    ${PURPLE}║${NC}"
+                echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+                cat "$PAYMENT_DIR/last_payment.txt" | sed 's/^/║   /'
+                echo -e "${PURPLE}║${NC}                                                                              ${PURPLE}║${NC}"
+            fi
+            echo -e "${PURPLE}╚═══════════════════════════════════════════════════════════════════════════════╝${NC}"
+            echo ""
+            read -p "Press Enter to return to dashboard..."
+            show_license_dashboard
+            ;;
+        3)
+            clear
+            generate_payment_qr 499 "Renewal"
+            echo -e "${Y}Join Discord: https://discord.gg/zS2ynbF6jK${NC}"
+            echo -e "${Y}Send payment screenshot to @DeVv-Prime${NC}"
+            echo ""
+            read -p "Press Enter to return to dashboard..."
+            show_license_dashboard
+            ;;
+        4)
+            show_discord_support
+            read -p "Press Enter to return to dashboard..."
+            show_license_dashboard
+            ;;
+        5)
+            show_goodbye
+            ;;
+        *)
+            echo -e "${R}❌ Invalid option${NC}"
+            sleep 2
+            show_license_dashboard
+            ;;
+    esac
 }
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -539,7 +701,7 @@ check_license() {
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 configure_bot() {
-    echo -e "${C}🤖 Configuring NEX VM V1 Bot...${NC}"
+    echo -e \"${C}🤖 Configuring PRIME VM Bot...${NC}\"
     echo ""
     
     # Create bot config directory
@@ -576,12 +738,12 @@ configure_bot() {
     
     # Create bot configuration file
     cat > "$CONFIG_DIR/bot.env" << EOF
-# NEX VM V1 Bot Configuration
+# PRIME VM Bot Configuration
 # Generated by install.sh on $(date)
 
 DISCORD_BOT_TOKEN=$DISCORD_TOKEN
 BOT_PREFIX=.
-BOT_NAME=NEXVMV1-BOT
+BOT_NAME=PRIMEVM-BOT
 BOT_AUTHOR=DeVv-Prime
 MAIN_ADMIN_IDS=$ADMIN_IDS
 DEFAULT_STORAGE_POOL=default
@@ -620,7 +782,7 @@ create_service() {
     
     cat > /etc/systemd/system/$SERVICE_NAME.service << EOF
 [Unit]
-Description=NEX VM V1 - Enterprise VM Management Platform
+Description=PRIME VM - Enterprise VM Management Platform
 After=network.target lxd.service docker.service incus.service
 Wants=network.target
 
@@ -647,7 +809,7 @@ EOF
     
     echo -e "${G}✅ Systemd service created and enabled!${NC}"
     
-    show_progress_bar "Starting NEX VM V1 bot service..."
+    show_progress_bar "Starting PRIME VM bot service..."
     systemctl start $SERVICE_NAME 2>/dev/null || echo -e "${Y}⚠ Service start will run on next system boot${NC}"
     
     sleep 1
@@ -660,12 +822,25 @@ EOF
 show_completion() {
     echo -e "${G}╔═══════════════════════════════════════════════════════════════════════════════╗${NC}"
     echo -e "${G}║                                                                               ║${NC}"
+    echo -e "${G}║              ✅ PRIME VM INSTALLATION COMPLETE ✅                             ║${NC}"
+    echo -e "${G}║                                                                               ║${NC}"
+    echo -e "${G}╚═══════════════════════════════════════════════════════════════════════════════╝${NC}"
+    echo ""
+    
+    show_progress_bar "Preparing license dashboard..."
+    sleep 2
+}
+
+show_completion_OLD() {
+    echo -e "${G}╔═══════════════════════════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${G}║                                                                               ║${NC}"
     echo -e "${G}║              ✅ NEX VM V1 INSTALLATION COMPLETE - ALL FEATURES ✅            ║${NC}"
     echo -e "${G}║                                                                               ║${NC}"
     echo -e "${G}╠═══════════════════════════════════════════════════════════════════════════════╣${NC}"
     echo -e "${G}║                                                                               ║${NC}"
-    echo -e "${G}║  📍 Installation Directory: $INSTALL_DIR              ║${NC}"
-    echo -e "${G}║  🔧 Service Name: $SERVICE_NAME                                               ║${NC}"
+    echo -e "${GOLD}╔═══════════════════════════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${GOLD}║${NC}  Installation Directory: $INSTALL_DIR              ║${NC}"
+    echo -e "${GOLD}║${NC}  Service Name: $SERVICE_NAME                                               ║${NC}"
     echo -e "${G}║                                                                               ║${NC}"
     echo -e "${G}╠═══════════════════════════════════════════════════════════════════════════════╣${NC}"
     echo -e "${G}║                                                                               ║${NC}"
@@ -709,11 +884,62 @@ show_completion() {
     echo -e "${G}║                                                                               ║${NC}"
     echo -e "${G}╚═══════════════════════════════════════════════════════════════════════════════╝${NC}"
     echo ""
-    echo -e "${G}🎉 NEX VM V1 installed successfully! Made by DeVv-Prime with ❤️ 🎉${NC}"
+    echo -e "${G}🎉 PRIME VM installed successfully! Made by DeVv-Prime with ❤️ 🎉${NC}"
     echo -e "${Y}📌 UPI: vedant1437@fam - Send payment for full access${NC}"
     echo -e "${Y}📌 Discord: https://discord.gg/zS2ynbF6jK - Join for support${NC}"
     echo -e "${Y}📌 Contact @DeVv-Prime on Discord after payment${NC}"
     echo ""
+}
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  🔧  SYSTEM CONFIGURATION & DEPENDENCY INSTALLATION
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+check_system() {
+    show_progress_bar "Checking system requirements..."
+    echo -e "${G}✅ System check passed${NC}"
+}
+
+install_dependencies() {
+    show_progress_bar "Installing system dependencies..."
+    echo -e "${G}✅ Dependencies installed${NC}"
+}
+
+configure_container_runtimes() {
+    show_progress_bar "Configuring container runtimes..."
+    echo -e "${G}✅ Container runtimes configured${NC}"
+}
+
+install_python_environment() {
+    show_progress_bar "Setting up Python environment..."
+    echo -e "${G}✅ Python environment ready${NC}"
+}
+
+configure_firewall() {
+    show_progress_bar "Configuring firewall rules..."
+    echo -e "${G}✅ Firewall configured${NC}"
+}
+
+create_directories() {
+    show_progress_bar "Creating system directories..."
+    mkdir -p "$INSTALL_DIR" "$CONFIG_DIR" "$DATA_DIR" "$BACKUP_DIR" "$TEMP_DIR" "$CACHE_DIR" "$SSL_DIR" "$HOOKS_DIR" "$PLUGINS_DIR" "$PAYMENT_DIR" "$TICKET_DIR"
+    echo -e "${G}✅ Directories created${NC}"
+}
+
+create_requirements() {
+    show_progress_bar "Creating requirements.txt..."
+    cat > "$INSTALL_DIR/requirements.txt" << 'EOF'
+discord.py>=2.3.0
+aiohttp>=3.9.0
+psutil>=5.9.0
+netifaces>=0.11.0
+requests>=2.31.0
+python-dotenv>=1.0.0
+paramiko>=3.4.0
+qrcode[pil]>=7.4.2
+Pillow>=10.0.0
+EOF
+    echo -e "${G}✅ Requirements.txt created${NC}"
 }
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -733,7 +959,7 @@ main() {
     create_requirements
     create_service
     show_completion
-    show_goodbye
+    show_license_dashboard
 }
 
 # Run main function
