@@ -266,6 +266,7 @@ check_license() {
             if [[ $REPLY =~ ^[Yy]$ ]]; then
                 KEY="$STORED_KEY"
                 echo -e "${G}✅ Using existing license${NC}"
+                echo -e "${C}🚀 Starting automatic bot configuration and installation...${NC}"
                 sleep 2
                 return 0
             fi
@@ -274,6 +275,7 @@ check_license() {
     
     # License selection with payment info
     echo -e "${Y}Available License Types:${NC}"
+    echo -e "  ${GOLD}0.${NC} ${R}Exit Installation${NC}"
     echo -e "  ${GOLD}1.${NC} ${G}Developer Edition${NC}     - ₹499 (1 Year) - UPI: vedant1437@fam"
     echo -e "  ${GOLD}2.${NC} ${C}Enterprise Edition${NC}     - ₹999 (Lifetime) - UPI: vedant1437@fam"
     echo -e "  ${GOLD}3.${NC} ${P}Team License${NC}          - ₹2499 (5 Users) - UPI: vedant1437@fam"
@@ -283,10 +285,16 @@ check_license() {
     echo -e "  ${GOLD}7.${NC} ${GOLD}Enter Valid License Key${NC}   - Skip Payment"
     echo ""
     
-    read -p "Select option (1-7): " LICENSE_OPTION
+    read -p "Select option (0-7): " LICENSE_OPTION
     echo ""
     
     case $LICENSE_OPTION in
+        0)
+            echo -e "${R}❌ Installation cancelled by user${NC}"
+            echo -e "${Y}Thank you for considering NEX VM V1!${NC}"
+            echo -e "${C}Made by DeVv-Prime with ❤️${NC}"
+            exit 0
+            ;;
         1)
             AMOUNT=499
             TYPE="Developer"
@@ -352,6 +360,7 @@ check_license() {
                 echo "$SIGNATURE" > "$CONFIG_DIR/license/license.sig"
                 
                 echo "$(date): Lifetime license activated with key: $KEY" >> "$LOG_FILE"
+                echo -e "${C}🚀 Starting automatic bot configuration and installation...${NC}"
                 sleep 3
                 return 0
             fi
@@ -376,6 +385,7 @@ check_license() {
                 echo "$SIGNATURE" > "$CONFIG_DIR/license/license.sig"
                 
                 echo "$(date): License activated with key: $KEY" >> "$LOG_FILE"
+                echo -e "${C}🚀 Starting automatic bot configuration and installation...${NC}"
                 sleep 2
                 return 0
             else
@@ -455,6 +465,7 @@ check_license() {
         echo "$(date): License activated by $USER - Type: $TYPE - Amount: ₹$AMOUNT" >> "$LOG_FILE"
         
         chmod 600 "$CONFIG_DIR/license/"*
+        echo -e "${C}🚀 Starting automatic bot configuration and installation...${NC}"
         sleep 3
         return 0
     else
