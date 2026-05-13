@@ -286,6 +286,8 @@ check_license() {
     echo ""
     
     read -p "Select option (0-7): " LICENSE_OPTION
+    # Normalize input: remove whitespace and Windows CR characters
+    LICENSE_OPTION="$(printf '%s' "$LICENSE_OPTION" | tr -d '\r\n[:space:]')"
     echo ""
     
     case $LICENSE_OPTION in
